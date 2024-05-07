@@ -3,9 +3,10 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\auth\RegisterController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\PostController;
 
 /*
-|--------------------------------------------------------------------------
+|-------------------------\-------------------------------------------------
 | Web Routes
 |--------------------------------------------------------------------------
 |
@@ -15,12 +16,16 @@ use App\Http\Controllers\DashboardController;
 |
 */
 
-Route::get('/register', [RegisterController::class,'index'])->name('register');
-Route::post('/register', [RegisterController::class,'store']);
-Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-Route::get('/posts', function () {
 
-    return view('posts.index');
+Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+Route::get('/posts', [PostController::class, 'index'])->name('posts');
+Route::post('/posts', [PostController::class, 'store']);
+Route::get('/', function () {
+
+    return view('welcome');
    
 });
 
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
