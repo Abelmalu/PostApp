@@ -16,7 +16,7 @@
         <ul class=" flex">
             <li><a href=""class="p-3">Ablemalu</a></li>
             <li><a href=""class="p-3">Login</a></li>
-            <li><a href=""class="p-3">Register</a></li>
+            <li><a href="{{ route('register') }}"class="p-3" >Register</a></li>
             <li><a href=""class="p-3">logout</a></li>
         </ul>
 </nav>
