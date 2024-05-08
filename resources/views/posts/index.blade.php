@@ -31,14 +31,22 @@
     
      <span> {{$post->likes->count()}}</span>
 
-    <form action="{{ route('posts.likes', $post->id) }}" method= "POST" class="text-blue-500">
-      @csrf
-      <button>Like</button>
-    </form>
-    <form action="" method= "post" class="mr-1">
-      @csrf
-      <button class="text-blue-500 mb-4 ">Unlike</button>
-    </form>
+     @if(!$post->likedBy(auth()->user()))
+
+        <form action="{{ route('posts.likes', $post->id) }}" method= "POST" class="text-blue-500">
+          @csrf
+          <button>Like</button>
+        </form>
+
+     @else
+        <form action="{{ route('posts.likes', $post->id) }}" method= "post" class="mr-1">
+          @csrf
+          @method('DELETE')
+          <button class="text-blue-500 mb-4 ">Unlike</button>
+        </form>
+
+
+    @endif
      @endforeach
 
 

@@ -18,6 +18,7 @@ use App\Http\Controllers\LikeController;
 */
 
 Route::post('/posts/{id}/likes', [LikeController::class, 'store'])->name('posts.likes');
+Route::delete('/posts/{id}/likes', [LikeController::class, 'destroy'])->name('posts.likes');
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 Route::get('/posts', [PostController::class, 'index'])->name('posts');
 Route::post('/posts', [PostController::class, 'store']);
