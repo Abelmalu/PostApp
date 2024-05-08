@@ -18,16 +18,31 @@
 
      @if($posts->count())
      @foreach($posts as $post)
-     <div class="mb-4">
+     <span >
       {{$post->body}}
-     </div>
-     <div class="font-bold">
-      {{$post->user->name}}
-     </div>
-     <div class="font-bold">
+     </span>
+      <span class="font-bold">
       {{$post->created_at->diffForHumans()}}
-     </div>
+     </span>
+     <br>
+     <span class="font-bold">
+      {{$post->user->name}}
+     </span>
+    
+     <span> {{$post->likes->count()}}</span>
+
+    <form action="{{ route('posts.likes', $post->id) }}" method= "POST" class="text-blue-500">
+      @csrf
+      <button>Like</button>
+    </form>
+    <form action="" method= "post" class="mr-1">
+      @csrf
+      <button class="text-blue-500 mb-4 ">Unlike</button>
+    </form>
      @endforeach
+
+
+     {{$posts->render()}}
 
 
      @else

@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\auth\RegisterController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\LikeController;
 
 /*
 |-------------------------\-------------------------------------------------
@@ -16,10 +17,11 @@ use App\Http\Controllers\PostController;
 |
 */
 
-
+Route::post('/posts/{id}/likes', [LikeController::class, 'store'])->name('posts.likes');
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 Route::get('/posts', [PostController::class, 'index'])->name('posts');
 Route::post('/posts', [PostController::class, 'store']);
+
 Route::get('/', function () {
 
     return view('welcome');
